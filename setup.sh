@@ -20,3 +20,5 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then # mac
     rm fonts.zip
 fi
 
+sudo apt install zsh
+chsh -s $(which zsh)
