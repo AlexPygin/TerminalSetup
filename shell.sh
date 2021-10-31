@@ -1,4 +1,6 @@
-cd ~
+if [[ "$OSTYPE" == "darwin"* ]]; then # mac
+    brew install wget
+fi
 
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
@@ -7,14 +9,14 @@ mkdir ~/.poshthemes
 cp mytheme.json ~/.poshthemes/mytheme.json
 chmod u+rw ~/.poshthemes/*.json
 
-sed -i -e '$aeval "$(oh-my-posh --init --shell zsh --config ~/.poshthemes/mytheme.json)"' ~/.zshrc
-
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-mv .zshrc .zshrc_oh
-mv .zshrc.pre-oh-my-zsh .zshrc
+mv ~/.zshrc ~/.zshrc_oh
+mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 
-curl -L git.io/antigen > antigen.zsh
+sed -i -e '$aeval "$(oh-my-posh --init --shell zsh --config ~/.poshthemes/mytheme.json)"' ~/.zshrc
+
+curl -L git.io/antigen > ~/antigen.zsh
 
 
 sed -i '1 i\source $ZSH/oh-my-zsh.sh' ~/.zshrc
